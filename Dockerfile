@@ -13,7 +13,6 @@ LABEL maintainer=terraform-linters
 RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /tflint/dist/tflint /usr/local/bin
-COPY entrypoint.sh /
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["tflint"]
 WORKDIR /data
