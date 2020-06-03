@@ -21,3 +21,6 @@ jobs:
        
       - name: Check linting of Terraform files
         uses: devops-infra/action-tflint@master
+        with:
+        tflint_params: "--module --deep"
+        dir_filter: modules
