@@ -14,10 +14,20 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Terraform Init'
+        steps:
+        uses: hashicorp/setup-terraform@v1
         run: terraform init
 
       - name: 'Terraform Format'
+        uses: hashicorp/setup-terraform@v1
         run: terraform fmt -check
         
       - name: tflint
         uses: reviewdog/action-tflint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          working_directory: "testdata" # Optional. Change working directory
+          reporter: github-pr-review # Optional. Change reporter
+          fail_on_error: "true" # Optional. Fail action if errors are found
+          filter_mode: "nofilter" # Optional. Check all files, not just the diff
+          flags: "--module" # Optional. Add custom tflint flags
