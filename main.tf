@@ -1,7 +1,7 @@
 locals {
   ssm_parameter_path = "${var.env}/${var.app_name}"
 }
-
+test
 resource "aws_ssm_parameter" "this" {
   for_each = var.names
 
