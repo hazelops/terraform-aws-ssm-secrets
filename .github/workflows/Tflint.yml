@@ -1,8 +1,6 @@
 name: Check TFLint
 on:
   push:
-    branches:
-      - "**"
 jobs:
   format-hcl:
     runs-on: ubuntu-latest
