@@ -3,5 +3,5 @@ name: 'TFL'
 description: 'TFL Check'
 on:[push]
 runs:
-  using: 'docker'
+  using: docker
   image: 'Dockerfile'
