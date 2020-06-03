@@ -1,0 +1,6 @@
+# action.yml
+name: 'TFL'
+description: 'TFL Check'
+runs:
+   using: 'docker'
+   image: 'Dockerfile
