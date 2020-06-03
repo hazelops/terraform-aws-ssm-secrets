@@ -1,11 +1,23 @@
-name: Check TFLint
-on:
-  push:
+name: 'Check TFLint'
+on: [push, pull_request]
+defaults:
+      run:
+        shell: bash
+
 jobs:
-  format-hcl:
+  terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Check linting of Terraform files
-      uses: devops-infra/action-tflint@master
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Terraform Init'
+        run: terraform init
+
+      - name: 'Terraform Format'
+        run: terraform fmt -check
+
+      - name: Check linting of Terraform files
+        uses: devops-infra/action-tflint@master
