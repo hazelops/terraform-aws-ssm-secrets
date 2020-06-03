@@ -1,5 +1,5 @@
 name: reviewdog
-on: [github-pr-review]
+on: [push]
 jobs:
   tflint:
     name: runner / tflint
