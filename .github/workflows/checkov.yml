@@ -1,4 +1,4 @@
-name: 'Check TFLint'
+name: 'Checkov'
 on: [push, pull_request]
 jobs:
   checkov-job:
