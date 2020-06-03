@@ -1,0 +1,10 @@
+on: [push]
+
+jobs:
+  TFL:
+    runs-on: ubuntu-latest
+    name: TFL
+    steps:
+    - name: Hello world action step
+      id: Terraform
+      uses: ./github/workflows/action.yml
