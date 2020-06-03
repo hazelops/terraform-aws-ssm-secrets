@@ -7,6 +7,6 @@ jobs:
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v2
-    - name: Hello world action step
+    - name: TFLinter
       id: Terraform
-      uses: ./action.yml
+      uses: ./
