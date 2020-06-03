@@ -24,3 +24,7 @@ jobs:
      
       - name: run docker logs
         run: docker logs TFLint
+      
+      - name: tflint
+        uses: reviewdog/action-tflint@master
+         
