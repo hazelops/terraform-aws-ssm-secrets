@@ -19,5 +19,8 @@ jobs:
       - name: 'Terraform Format'
         run: terraform fmt -check
 
-      - name: Check linting of Terraform files
-        uses: devops-infra/action-tflint@master
+      - name: Run image
+        run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint
+     
+      - name: run docker logs
+        run: docker logs TFLint
