@@ -1,9 +1,6 @@
 # action.yml
 name: 'TFL'
 description: 'TFL Check'
-
-on:[push]
-
- runs:
+runs:
    using: 'docker'
    image: 'Dockerfile'
