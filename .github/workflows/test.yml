@@ -25,4 +25,4 @@ jobs:
 
       - run: echo $TEXT
         env:
-        TEXT: ${{ steps.hello.outputs.text }}
+          TEXT: ${{ steps.hello.outputs.text }}
