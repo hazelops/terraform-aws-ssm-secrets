@@ -18,9 +18,9 @@ jobs:
         run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint  --format=json > test-results.json
      
       - name: echo json
-      - uses: pCYSl5EDgo/cat@master
-      id: hello
-      with:
+        uses: pCYSl5EDgo/cat@master
+        id: hello
+        with:
         path: test-results.json
 
     - run: echo $TEXT
