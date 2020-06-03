@@ -23,6 +23,6 @@ jobs:
         with:
         path: test-results.json
 
-    - run: echo $TEXT
-      env:
+      - run: echo $TEXT
+        env:
         TEXT: ${{ steps.hello.outputs.text }}
