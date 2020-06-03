@@ -17,5 +17,5 @@ jobs:
       - name: Run image
         run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint  --format=json > test-results.json
      
-      - name: run docker logs
-        run: docker logs TFLint
+      - name: run echo
+        run: echo test-results.json
