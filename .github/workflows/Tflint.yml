@@ -20,7 +20,7 @@ jobs:
         run: terraform fmt -check
 
       - name: Run image
-        run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint
+        run: echo "docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint"
      
       - name: run docker logs
         run: docker logs TFLint
