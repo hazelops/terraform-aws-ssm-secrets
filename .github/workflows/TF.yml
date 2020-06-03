@@ -1,0 +1,21 @@
+name: TF
+on: [push]
+defaults:
+  run:
+    working-directory: ${{ env.tf_actions_working_dir }}
+steps:
+- uses: actions/checkout@v2
+- uses: hashicorp/setup-terraform@v1
+
+- name: Terraform fmt
+  id: fmt
+  run: terraform fmt
+  continue-on-error: true
+
+- name: Terraform Init
+  id: init
+  run: terraform init
+
+- name: Terraform Validate
+  id: validate
+  run: terraform validate -no-color
