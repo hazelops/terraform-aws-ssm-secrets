@@ -1,5 +1,9 @@
 name: TF
 on: [push]
+jobs:
+	build:
+		runs-on: ubuntu-latest
+
 defaults:
   run:
     working-directory: ${{ env.tf_actions_working_dir }}
@@ -19,3 +23,5 @@ steps:
 - name: Terraform Validate
   id: validate
   run: terraform validate -no-color
+  name: Terraform deploy to Azure
+
