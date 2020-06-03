@@ -4,7 +4,7 @@ locals {
 
 resource "aws_ssm_parameter" "this" {
   for_each = var.names
-
+test
   name  = "/${local.ssm_parameter_path}/${each.value}"
   type  = "SecureString"
   value = var.default_value
