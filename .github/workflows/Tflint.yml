@@ -13,12 +13,13 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v2
 
-    #  - name: 'Terraform Init'
-    #    run: terraform init || docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint > test.txt
-     - name: Setup reviewdog
-       run: |
+      - name: 'Terraform Init'
+        run: terraform init || docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint > test.txt
+          
+      - name: Setup reviewdog
+        run: |
          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
-       echo ::add-path::$HOME/bin
+         echo ::add-path::$HOME/bin
         
       - name: Run reviewdog
         env:
