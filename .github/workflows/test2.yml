@@ -17,6 +17,9 @@ jobs:
         run: docker run -it -d --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint  --format=checkstyle > test2.xml
      
       - name: run docker logs
+        run: echo $GITHUB_WORKSPACE
+        
+      - name: run docker logs
         run: docker logs TFLint > test.txt
       
       - name: echo test
