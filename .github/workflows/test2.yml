@@ -28,3 +28,10 @@ jobs:
       - run: echo $TEXT
         env:
           TEXT: ${{ steps.hello.outputs.text }}
+    
+      - name: Get text
+        id: vars
+        run: echo ::set-output name=test::$(cat test.txt)
+        
+      - name: Test output
+        run: echo ${{ steps.vars.outputs.test }}
