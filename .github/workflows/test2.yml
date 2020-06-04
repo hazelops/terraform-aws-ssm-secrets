@@ -16,18 +16,18 @@ jobs:
       - name: Run image
         run: docker run -it -d --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint  --format=checkstyle > test2.xml
      
-#      - name: run docker logs
-#       run: docker logs TFLint > test.txt
+      - name: run docker logs
+        run: docker logs TFLint > test.txt
       
-#      - name: echo test
-#        uses: pCYSl5EDgo/cat@master
-#        id: hello
-#        with:
-#          path: test.txt
+      - name: echo test
+        uses: pCYSl5EDgo/cat@master
+        id: hello
+        with:
+          path: test2.xml
 
-#      - run: echo $TEXT
-#        env:
-#          TEXT: ${{ steps.hello.outputs.text }}
+      - run: echo $TEXT
+        env:
+          TEXT: ${{ steps.hello.outputs.text }}
     
       - name: Get text
         id: vars
