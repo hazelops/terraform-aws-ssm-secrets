@@ -16,6 +16,7 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
+          directory: $GITHUB_WORKSPACE
           skip_check: CKV_AWS_1 # optional: skip a specific check_id
-          quiet: false # optional: display only failed checks
+          quiet: true # optional: display only failed checks
           
