@@ -5,18 +5,17 @@ defaults:
         shell: bash
 
 jobs:
-  checkov-job:
+  terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
-    name: checkov-action
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@master
 
-      - name: Run Checkov action
-        id: checkov
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: $GITHUB_WORKSPACE
-          skip_check: CKV_AWS_1 # optional: skip a specific check_id
-          quiet: true # optional: display only failed checks
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+        
+      - name: Run image
+        run: docker run --rm --name Checkov -v $GITHUB_WORKSPACE:/tf bridgecrew/checkov -d /tf
+        
+        
+
           
