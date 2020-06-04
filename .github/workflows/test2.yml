@@ -1,0 +1,39 @@
+name: 'Test'
+on: [push, pull_request]
+defaults:
+      run:
+        shell: bash
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+          
+      - name: Setup reviewdog
+        run: |
+         mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
+         echo ::add-path::$HOME/bin
+      
+      - name: Run image
+        run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle
+         
+      - name: Run reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker logs TFLint | reviewdog -f=checkstyle -name="tflint" -reporter=github-check -level=warning -fail-on-error -filter-mode=nofilter
+     
+      - name: run docker logs
+        run: docker logs TFLint
+
+
+      - name: 'Terraform Format'
+        run: terraform fmt -check
+
+      - name: Run image
+        run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle
