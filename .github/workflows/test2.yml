@@ -34,4 +34,4 @@ jobs:
         run: echo ::set-output name=test::$(cat test.txt)
         
       - name: Test output
-        run: if docker logs TFLint foo; then echo error|| exit 2; else echo All ok; fi
+        run: if "docker logs TFLint" foo; then echo error|| exit 2; else echo All ok; fi
