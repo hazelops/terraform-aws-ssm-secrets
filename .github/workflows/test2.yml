@@ -37,4 +37,4 @@ jobs:
         run: echo ::set-output name=test2::$(cat test2.xml)
         
       - name: Test output
-        run: if cat test2.xml foo; then echo error|| exit 2; else echo All ok; fi
+        run: if test2.xml foo; then echo error|| exit 2; else echo All ok; fi
