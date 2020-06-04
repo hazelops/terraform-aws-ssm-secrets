@@ -16,7 +16,7 @@ jobs:
       - name: Run image
         run: docker run -it -d --rm --name TFLint -v $HOME:/data -t wata727/tflint  --format=checkstyle > test2.xml
      
-      - name: run docker logs
+      - name: show home
         run: echo $HOME
         
       - name: run docker logs
