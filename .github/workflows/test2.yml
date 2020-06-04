@@ -18,9 +18,6 @@ jobs:
      
       - name: show home
         run: echo $HOME
-        
-      - name: run docker logs
-        run: docker logs TFLint > test.txt
       
       - name: echo test
         uses: pCYSl5EDgo/cat@master
@@ -39,3 +36,6 @@ jobs:
       - name: Test output
         run: | 
              if 'test2.xml' foo; then echo error|| exit 2; else echo All ok; fi
+             
+      - name: run docker logs
+        run: docker logs TFLint > test.txt
