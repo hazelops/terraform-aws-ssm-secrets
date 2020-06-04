@@ -20,7 +20,7 @@ jobs:
          echo ::add-path::$HOME/bin
       
       - name: Run image
-        run: docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle
+        run: docker run --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle
          
       - name: Run reviewdog
         env:
