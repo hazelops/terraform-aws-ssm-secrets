@@ -24,7 +24,7 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --f=checkfile . | reviewdog -efm="%f:%l:%c: %m" -name="misspell" -reporter=github-pr-check
+          docker run -it -d --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --f=checkfile . | reviewdog -efm="%f:%l:%c: %m" -name="misspell" -reporter=github-check
 
 
 
