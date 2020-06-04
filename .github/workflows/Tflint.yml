@@ -18,7 +18,7 @@ jobs:
 
       - name: Check test
         run: |
-         bash if [ -f test.txt && ! -s test.txt ] && echo "filename exists and is empty" else echo "fuck"
+         bash [ -f test.txt && ! -s test.txt ] && echo "filename exists and is empty" || echo "fuck"
 
 
 
