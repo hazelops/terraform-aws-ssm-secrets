@@ -20,4 +20,7 @@ resource "aws_ssm_parameter" "this" {
     EnvVarName  = each.value
   }
 }
-test synts
+resource "aws_instance" "test" {
+  instance_type = "t1.big"
+  
+}
