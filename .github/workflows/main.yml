@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Terraform init'
-        run: terraform init | terraform validate
+        run: terraform init
 
             
       - name: 'Setup Reviewdog'
@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Terraform init'
-        run: terraform init | terraform validate
+        run: terraform init
             
       - name: 'Setup reviewdog'
         run: |
