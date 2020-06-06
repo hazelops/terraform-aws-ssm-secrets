@@ -67,5 +67,5 @@ jobs:
          
       - name: Run Checkov CLI test
         continue-on-error: true
-        run: docker run --rm --name Checkov -v $GITHUB_WORKSPACE:/tf bridgecrew/checkov -d /tf -o github_failed_only
+        run: docker run --rm --name Checkov -v $GITHUB_WORKSPACE:/tf bridgecrew/checkov -d /tf -o cli
         
