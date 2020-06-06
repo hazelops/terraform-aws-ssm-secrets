@@ -20,3 +20,4 @@ resource "aws_ssm_parameter" "this" {
     EnvVarName  = each.value
   }
 }
+test synts
