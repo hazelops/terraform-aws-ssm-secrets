@@ -13,18 +13,18 @@ jobs:
     name: reviewdog (github-check)
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: 'Terraform init'
+      - name: Terraform init
         run: terraform init
           
-      - name: 'Setup Reviewdog'
+      - name: Setup Reviewdog
         run: |
          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
          echo ::add-path::$HOME/bin
          
-      - name: 'Run ReviewDog (github-check)'
+      - name: Run ReviewDog (github-check)
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -35,13 +35,13 @@ jobs:
     name: reviewdog on Pull Request
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: Checkout
         uses: actions/checkout@v2
 
-      - name: 'Terraform init'
+      - name: Terraform init
         run: terraform init
             
-      - name: 'Setup reviewdog'
+      - name: Setup reviewdog
         run: |
          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
          echo ::add-path::$HOME/bin
@@ -63,7 +63,7 @@ jobs:
     name: Checkov (github-check)
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: Checkout
         uses: actions/checkout@v2
          
       - name: Run Checkov CLI test
