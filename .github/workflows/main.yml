@@ -10,7 +10,7 @@ on:
 jobs:
   reviewdog-github-check:
     if: github.event_name == 'push'
-    name: reviewdog (github-check)
+    name: ReviewDog (github-check)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,7 +19,7 @@ jobs:
       - name: Terraform init
         run: terraform init
           
-      - name: Setup Reviewdog
+      - name: Setup ReviewDog
         run: |
          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
          echo ::add-path::$HOME/bin
@@ -28,11 +28,11 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          docker run --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -name="github-check" -reporter=github-check -level=warning -filter-mode=nofilter
+          docker run --rm --name tflint -v $PWD:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -name="github-check" -reporter=github-check -level=warning -filter-mode=nofilter
           
   reviewdog-pr:
     if: github.event_name == 'pull_request'
-    name: reviewdog on Pull Request
+    name: ReviewDog on Pull Request
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,25 +41,25 @@ jobs:
       - name: Terraform init
         run: terraform init
             
-      - name: Setup reviewdog
+      - name: Setup ReviewDog
         run: |
          mkdir -p $HOME/bin && curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b $HOME/bin
          echo ::add-path::$HOME/bin
          
-      - name: Run reviewdog (github-pr-check)
+      - name: Run ReviewDog (github-pr-check)
         continue-on-error: true
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          docker run --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -reporter=github-pr-check -name=github-pr-check-info
+          docker run --rm --name tflint -v $PWD:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -reporter=github-pr-check -name=github-pr-check-info
           
-      - name: Run reviewdog (github-pr-check with fail-on-error)  
+      - name: Run ReviewDog (github-pr-check with fail-on-error)  
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          docker run --rm --name TFLint -v $GITHUB_WORKSPACE:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -name=pr-check-fail-on-error -reporter=github-pr-check -fail-on-error -filter-mode=nofilter 
+          docker run --rm --name tflint -v $PWD:/data -t wata727/tflint --format=checkstyle | reviewdog -f=checkstyle -name=pr-check-fail-on-error -reporter=github-pr-check -fail-on-error -filter-mode=nofilter 
 
-  Checkov-check:
+  checkov-check:
     name: Checkov (github-check)
     runs-on: ubuntu-latest
     steps:
@@ -68,4 +68,4 @@ jobs:
          
       - name: Run Checkov CLI test
         continue-on-error: true
-        run: docker run --rm --name Checkov -v $GITHUB_WORKSPACE:/tf bridgecrew/checkov -d /tf -o cli
+        run: docker run --rm --name checkov -v $PWD:/tf bridgecrew/checkov -d /tf -o cli
